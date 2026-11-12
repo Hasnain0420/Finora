@@ -24,6 +24,7 @@ export default function Transaction() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch transactions
   useEffect(() => {
     async function fetchTransactions() {
       try {
@@ -31,7 +32,8 @@ export default function Transaction() {
         setError(null);
 
         const data = await getTransactions();
-        setTransactions(data);
+
+        setTransactions(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error fetching transactions:", err);
         setError(err.message || "Failed to load transactions.");
@@ -72,7 +74,7 @@ export default function Transaction() {
     );
   });
 
-  // All-time totals
+  // Calculate all-time totals
   const totalIncome = transactions
     .filter((item) => item.type === "income")
     .reduce((total, item) => total + Number(item.amount), 0);
@@ -83,27 +85,12 @@ export default function Transaction() {
 
   const netBalance = totalIncome - totalExpenses;
 
+  // Format currency
   const formatPKR = (amount) =>
     `Rs. ${amount.toLocaleString("en-PK", {
       minimumFractionDigits: 0,
       maximumFractionDigits: 2,
     })}`;
-
-  if (loading) {
-    return (
-      <div className="transaction_page">
-        Loading transactions...
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="transaction_page">
-        <p role="alert">{error}</p>
-      </div>
-    );
-  }
 
   return (
     <div className="transaction_page">
@@ -148,8 +135,16 @@ export default function Transaction() {
         onFilterChange={setFilters}
       />
 
-      {/* Transaction List / Empty State */}
-      {filteredTransactions.length > 0 ? (
+      {/* Transaction List */}
+      {loading ? (
+        <div className="transaction_empty_state">
+          <p>Loading transactions...</p>
+        </div>
+      ) : error ? (
+        <div className="transaction_empty_state">
+          <p role="alert">{error}</p>
+        </div>
+      ) : filteredTransactions.length > 0 ? (
         <TransactionList transactions={filteredTransactions} />
       ) : (
         <div className="transaction_empty_state">
