@@ -18,7 +18,7 @@ export default function Sidebar({ isOpen, onClose }) {
         <img src={wallet} alt="Wallet" width="30" height="30" />
 
         <p>
-          Expense<span>Tracker</span>
+          Finora
         </p>
 
         <button
