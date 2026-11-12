@@ -1,0 +1,136 @@
+
+/* ========================================
+   1. QUICK STATS CARD
+======================================== */
+
+.quick_state {
+  display: flex;
+  flex: 3 1 300px;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  max-width: 100%;
+  height: 220px;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Heading */
+.quick_state_title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Content */
+.quick_state_content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  gap: 12px;
+}
+
+/* ========================================
+   2. STATISTIC ROW
+======================================== */
+
+.quick_stat_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Icon Circle */
+.quick_stat_icon {
+  display: flex;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* Expense */
+.quick_stat_icon_expense {
+  background-color: #ffedd5;
+  color: #f97316;
+}
+
+/* Income */
+.quick_stat_icon_income {
+  background-color: #d1fae5;
+  color: #10b981;
+}
+
+/* Average Spending */
+.quick_stat_icon_average {
+  background-color: #ede9fe;
+  color: #8b5cf6;
+}
+
+/* ========================================
+   3. STATISTIC TEXT
+======================================== */
+
+.quick_stat_details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.quick_stat_label {
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.quick_stat_value {
+  color: #1e293b;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.quick_stat_description {
+  color: #94a3b8;
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+/* ========================================
+   4. MOBILE
+======================================== */
+
+@media (max-width: 550px) {
+  .quick_state {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 220px;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .quick_state_content {
+    gap: 10px;
+  }
+
+  .quick_stat_icon {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+  }
+}

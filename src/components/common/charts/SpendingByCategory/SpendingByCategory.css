@@ -1,0 +1,142 @@
+
+/* ========================================
+   1. PIE CHART CARD
+======================================== */
+
+.pie_chart {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex: 5 1 300px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 220px;
+  gap: 12px;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   2. DONUT CHART
+======================================== */
+
+.pie_graph {
+  flex: 1 1 200px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 220px;
+  background-color: #bfdbfe;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   3. CATEGORY SIDE MENU
+======================================== */
+
+.pie_side_menu {
+  display: flex;
+  flex: 2 1 200px;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.pie_side_menu h3 {
+  margin: 0 0 4px;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* ========================================
+   4. CATEGORY ROW
+======================================== */
+
+.category_item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Category Dot */
+.category_dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Category Name */
+.category_name {
+  min-width: 0;
+  color: #334155;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Category Amount */
+.category_amount {
+  color: #1e293b;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Category Percentage */
+.category_percent {
+  color: #64748b;
+  font-size: 11px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ========================================
+   5. MOBILE PIE CHART
+======================================== */
+
+@media (max-width: 550px) {
+  .pie_chart {
+    flex: 1 1 100%;
+    min-width: 0;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  .pie_graph {
+    flex: 1 1 100%;
+    min-width: 0;
+    height: 220px;
+  }
+
+  .pie_side_menu {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .category_item {
+    grid-template-columns: 10px minmax(0, 1fr) auto auto;
+    gap: 5px;
+  }
+
+  .category_name,
+  .category_amount {
+    font-size: 11px;
+  }
+
+  .category_percent {
+    font-size: 10px;
+  }
+}

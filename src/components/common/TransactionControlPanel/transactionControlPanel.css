@@ -1,0 +1,117 @@
+
+.transaction_control_panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+  padding: 18px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.control_field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.control_field label {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.control_field select,
+.amount_range_inputs input {
+  width: 100%;
+  height: 40px;
+  padding: 0 11px;
+  color: #334155;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.control_field select:focus,
+.amount_range_inputs input:focus {
+  border-color: #94a3b8;
+}
+
+.amount_range_inputs {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.amount_range_inputs span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.type_filter {
+  grid-column: 1 / -1;
+}
+
+.type_filter_buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.type_filter_buttons button {
+  min-width: 110px;
+  padding: 9px 18px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.type_filter_buttons button.income.active {
+  color: #15803d;
+  background-color: #f0faf4;
+  border-color: #86efac;
+}
+
+.type_filter_buttons button.expense.active {
+  color: #dc2626;
+  background-color: #fff5f5;
+  border-color: #fca5a5;
+}
+
+@media (max-width: 768px) {
+  .transaction_control_panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .type_filter {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 550px) {
+  .transaction_control_panel {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .type_filter {
+    grid-column: auto;
+  }
+
+  .type_filter_buttons button {
+    flex: 1;
+  }
+}

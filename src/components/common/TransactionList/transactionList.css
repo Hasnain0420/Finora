@@ -1,0 +1,179 @@
+
+.transaction_list {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.transaction_list_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transaction_list_header h3 {
+  margin: 0;
+  font-size: 17px;
+  color: #0f172a;
+}
+
+.transaction_list_header span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.transaction_row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 1.2fr;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  min-width: 0;
+}
+
+.transaction_row:last-child {
+  border-bottom: none;
+}
+
+.transaction_table_heading {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.transaction_info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.transaction_icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.income_icon {
+  color: #16a34a;
+  background: #dcfce7;
+}
+
+.expense_icon {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.transaction_details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.transaction_details strong {
+  color: #1e293b;
+  font-size: 13px;
+}
+
+.transaction_details span {
+  color: #94a3b8;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction_date {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.transaction_type {
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.income_type {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.expense_type {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.transaction_amount {
+  text-align: right;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.income_amount {
+  color: #16a34a;
+}
+
+.expense_amount {
+  color: #ef4444;
+}
+
+.transaction_list_empty {
+  padding: 35px 15px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .transaction_row {
+    grid-template-columns: 1.7fr 1fr 1.1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .transaction_table_heading span:nth-child(3),
+  .transaction_type {
+    display: none;
+  }
+
+  .transaction_amount {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .transaction_row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .transaction_table_heading {
+    display: none;
+  }
+
+  .transaction_date,
+  .transaction_type {
+    display: none;
+  }
+
+  .transaction_amount {
+    grid-column: 2;
+  }
+}

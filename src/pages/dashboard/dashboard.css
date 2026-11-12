@@ -1,0 +1,250 @@
+
+/* ========================================
+   1. DASHBOARD CONTAINER
+======================================== */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  gap: 20px;
+  padding: 5px 18px 10px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.dashboard_summary,
+.dashboard_charts {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   2. SUMMARY CARDS
+======================================== */
+
+.stats_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.stats_grid > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   3. MAIN CHARTS LAYOUT
+   Visualizer: 80%
+   Transaction Input: 20%
+======================================== */
+
+.dashboard_charts {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.visualizer {
+  display: flex;
+  flex-direction: column;
+  flex: 8 1 0;
+  width: 0;
+  min-width: 0;
+  gap: 16px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.transaction_input {
+  display: flex;
+  flex-direction: column;
+  flex: 2 1 0;
+  min-width: 300px;
+  max-width: 350px;
+  height: 500px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   4. BAR GRAPH
+======================================== */
+
+.bar_graph {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 280px;
+  padding: 18px;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.bar_graph_header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
+}
+
+.bar_graph_header h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.bar_graph_header p {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.chart_period {
+  padding: 6px 10px;
+  color: #475569;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+.bar_graph_chart {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 190px;
+  min-height: 190px;
+}
+
+/* ========================================
+   5. PIE CHART + QUICK STATS WRAPPER
+======================================== */
+
+.graph_states {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  gap: 16px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   7. MEDIA QUERY: SUMMARY CARDS
+======================================== */
+
+@media (max-width: 1202px) {
+  .stats_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ========================================
+   8. MEDIA QUERY: MAIN CHARTS
+======================================== */
+
+@media (max-width: 768px) {
+  .dashboard_charts {
+    flex-direction: column;
+  }
+
+  .visualizer,
+  .transaction_input {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .transaction_input {
+    min-width: 300px;
+    max-width: 350px;
+  }
+}
+
+/* ========================================
+   9. MEDIA QUERY: PIE + QUICK STATS
+======================================== */
+
+@media (max-width: 550px) {
+  .graph_states {
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .quick_state {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 220px;
+  }
+}
+
+/* ========================================
+   10. MEDIA QUERY: BAR GRAPH
+======================================== */
+
+@media (max-width: 550px) {
+  .bar_graph {
+    padding: 12px;
+  }
+
+  .bar_graph_header h3 {
+    font-size: 15px;
+  }
+
+  .bar_graph_chart {
+    height: 200px;
+    min-height: 200px;
+  }
+}
+
+/* ========================================
+   11. MEDIA QUERY: DASHBOARD + CARDS
+======================================== */
+
+@media (max-width: 550px) {
+  .dashboard {
+    padding: 5px 12px 10px;
+    gap: 14px;
+  }
+
+  .stats_grid {
+    gap: 10px;
+  }
+
+  .visualizer,
+  .transaction_input {
+    padding: 8px;
+  }
+}
