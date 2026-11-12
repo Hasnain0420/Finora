@@ -1,3 +1,4 @@
+
 .transaction_page {
   display: flex;
   flex-direction: column;
@@ -34,12 +35,40 @@
   box-sizing: border-box;
 }
 
+/* Empty State */
+.transaction_empty_state {
+  width: 100%;
+  margin-top: 0;
+  padding: 40px 20px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.transaction_empty_state h3 {
+  color: #1f2937;
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.transaction_empty_state p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Tablet */
 @media (max-width: 768px) {
   .transaction_summary_grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
+/* Mobile */
 @media (max-width: 550px) {
   .transaction_page {
     padding: 5px 12px 10px;
@@ -49,5 +78,9 @@
   .transaction_summary_grid {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+
+  .transaction_empty_state {
+    padding: 30px 15px;
   }
 }

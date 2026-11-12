@@ -12,6 +12,7 @@ import { getTransactions } from "../../lib/transactions";
 
 export default function Transaction() {
   const [transactions, setTransactions] = useState([]);
+
   const [filters, setFilters] = useState({
     selectedDate: "",
     selectedCategory: "",
@@ -42,7 +43,7 @@ export default function Transaction() {
     fetchTransactions();
   }, []);
 
-  // Filter existing transactions locally
+  // Filter transactions locally
   const filteredTransactions = transactions.filter((item) => {
     const matchesDate =
       !filters.selectedDate || item.date === filters.selectedDate;
@@ -89,7 +90,11 @@ export default function Transaction() {
     })}`;
 
   if (loading) {
-    return <div className="transaction_page">Loading transactions...</div>;
+    return (
+      <div className="transaction_page">
+        Loading transactions...
+      </div>
+    );
   }
 
   if (error) {
@@ -107,36 +112,33 @@ export default function Transaction() {
       {/* Summary Cards */}
       <div className="transaction_summary_grid">
         <IncomeCard
-          title="Total Period Income"
+          title="Total Income"
           amount={formatPKR(totalIncome)}
-          footerText="All-time total"
-          bgColor="#f0faf4"
-          borderColor="#d1eadb"
-          iconColor="#16a34a"
-          iconBgColor="#dcfce7"
-          Icon={TrendingUp}
+          icon={TrendingUp}
+          bgColor="#f4fbf7"
+          borderColor="#d8f3e5"
+          iconColor="#10b981"
+          iconBg="#dcfce7"
         />
 
         <IncomeCard
-          title="Total Period Expense"
+          title="Total Expenses"
           amount={formatPKR(totalExpenses)}
-          footerText="All-time total"
+          icon={TrendingDown}
           bgColor="#fff5f5"
           borderColor="#fecaca"
           iconColor="#ef4444"
-          iconBgColor="#fee2e2"
-          Icon={TrendingDown}
+          iconBg="#fee2e2"
         />
 
         <IncomeCard
-          title="Net Period Balance"
+          title="Net Balance"
           amount={formatPKR(netBalance)}
-          footerText="All-time total"
+          icon={Wallet}
           bgColor="#f0f7ff"
           borderColor="#dbeafe"
           iconColor="#3b82f6"
-          iconBgColor="#dbeafe"
-          Icon={Wallet}
+          iconBg="#dbeafe"
         />
       </div>
 
@@ -146,8 +148,24 @@ export default function Transaction() {
         onFilterChange={setFilters}
       />
 
-      {/* Transaction List */}
-      <TransactionList transactions={filteredTransactions} />
+      {/* Transaction List / Empty State */}
+      {filteredTransactions.length > 0 ? (
+        <TransactionList transactions={filteredTransactions} />
+      ) : (
+        <div className="transaction_empty_state">
+          <h3>
+            {transactions.length === 0
+              ? "No transactions yet"
+              : "No transactions found"}
+          </h3>
+
+          <p>
+            {transactions.length === 0
+              ? "Your income and expenses will appear here once you add them."
+              : "Try changing your filters to see transactions."}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
