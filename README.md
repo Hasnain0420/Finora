@@ -122,7 +122,7 @@ Environment variables containing project credentials should be configured locall
 
 ## 🗺️ Project Roadmap
 
-- [✔] Advanced financial reports and analytics
+- [x] Advanced financial reports and analytics
 - [ ] Monthly budgets and financial goals
 - [ ] Transaction export functionality
 - [ ] Financial insights and notifications
