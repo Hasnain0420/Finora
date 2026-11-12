@@ -72,7 +72,7 @@ export default function Transaction() {
     );
   });
 
-  // All-time totals (unfiltered)
+  // All-time totals
   const totalIncome = transactions
     .filter((item) => item.type === "income")
     .reduce((total, item) => total + Number(item.amount), 0);
@@ -114,31 +114,31 @@ export default function Transaction() {
         <IncomeCard
           title="Total Income"
           amount={formatPKR(totalIncome)}
-          icon={TrendingUp}
+          Icon={TrendingUp}
           bgColor="#f4fbf7"
           borderColor="#d8f3e5"
           iconColor="#10b981"
-          iconBg="#dcfce7"
+          iconBgColor="#dcfce7"
         />
 
         <IncomeCard
           title="Total Expenses"
           amount={formatPKR(totalExpenses)}
-          icon={TrendingDown}
+          Icon={TrendingDown}
           bgColor="#fff5f5"
           borderColor="#fecaca"
           iconColor="#ef4444"
-          iconBg="#fee2e2"
+          iconBgColor="#fee2e2"
         />
 
         <IncomeCard
           title="Net Balance"
           amount={formatPKR(netBalance)}
-          icon={Wallet}
+          Icon={Wallet}
           bgColor="#f0f7ff"
           borderColor="#dbeafe"
           iconColor="#3b82f6"
-          iconBg="#dbeafe"
+          iconBgColor="#dbeafe"
         />
       </div>
 
