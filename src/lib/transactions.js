@@ -92,3 +92,14 @@ export async function getFilteredTransactions({
 
   return data;
 }
+
+export async function deleteTransaction(transactionId) {
+  const { error } = await supabase
+    .from("transactions")
+    .delete()
+    .eq("id", transactionId);
+
+  if (error) {
+    throw error;
+  }
+}

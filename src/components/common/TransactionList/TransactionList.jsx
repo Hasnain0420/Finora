@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./transactionList.css";
 
@@ -16,6 +15,7 @@ import {
   Gift,
   CircleDollarSign,
   MoreHorizontal,
+  Trash2,
 } from "lucide-react";
 
 const categoryIcons = {
@@ -34,7 +34,7 @@ const categoryIcons = {
   "Other Income": CircleDollarSign,
 };
 
-export default function TransactionList({ transactions = [] }) {
+export default function TransactionList({ transactions = [], onDelete }) {
   const formatPKR = (amount) =>
     `Rs. ${Number(amount).toLocaleString("en-PK", {
       minimumFractionDigits: 0,
@@ -94,9 +94,7 @@ export default function TransactionList({ transactions = [] }) {
                 </div>
               </div>
 
-              <span className="transaction_date">
-                {formatDate(item.date)}
-              </span>
+              <span className="transaction_date">{formatDate(item.date)}</span>
 
               <span
                 className={`transaction_type ${
@@ -106,13 +104,25 @@ export default function TransactionList({ transactions = [] }) {
                 {isIncome ? "Income" : "Expense"}
               </span>
 
-              <strong
-                className={`transaction_amount ${
-                  isIncome ? "income_amount" : "expense_amount"
-                }`}
-              >
-                {isIncome ? "+" : "-"} {formatPKR(item.amount)}
-              </strong>
+              <div className="transaction_amount_actions">
+                <strong
+                  className={`transaction_amount ${
+                    isIncome ? "income_amount" : "expense_amount"
+                  }`}
+                >
+                  {isIncome ? "+" : "-"} {formatPKR(item.amount)}
+                </strong>
+
+                <button
+                  type="button"
+                  className="transaction_delete_btn"
+                  aria-label="Delete transaction"
+                  title="Delete transaction"
+                  onClick={() => onDelete(item.id)}
+                >
+                  <Trash2 size={17} />
+                </button>
+              </div>
             </div>
           );
         })}

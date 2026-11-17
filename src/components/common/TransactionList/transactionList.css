@@ -133,6 +133,14 @@
   color: #ef4444;
 }
 
+.transaction_amount_actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
 .transaction_list_empty {
   padding: 35px 15px;
   text-align: center;
@@ -140,6 +148,25 @@
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   color: #64748b;
+}
+
+.transaction_delete_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #ef4444;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.transaction_delete_btn:hover {
+  background: #fee2e2;
 }
 
 @media (max-width: 768px) {
@@ -173,7 +200,7 @@
     display: none;
   }
 
-  .transaction_amount {
+  .transaction_amount_actions {
     grid-column: 2;
   }
 }

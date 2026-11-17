@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./transaction.css";
 
 import IncomeCard from "../../components/common/card/Card";
@@ -8,7 +8,10 @@ import TransactionList from "../../components/common/TransactionList/Transaction
 
 import { TrendingUp, TrendingDown, Wallet } from "lucide-react";
 
-import { getTransactions } from "../../lib/transactions";
+import {
+  getTransactions,
+  deleteTransaction,
+} from "../../lib/transactions";
 
 export default function Transaction() {
   const [transactions, setTransactions] = useState([]);
@@ -25,25 +28,38 @@ export default function Transaction() {
   const [error, setError] = useState(null);
 
   // Fetch transactions
-  useEffect(() => {
-    async function fetchTransactions() {
-      try {
-        setLoading(true);
-        setError(null);
+  const fetchTransactions = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-        const data = await getTransactions();
+      const data = await getTransactions();
 
-        setTransactions(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("Error fetching transactions:", err);
-        setError(err.message || "Failed to load transactions.");
-      } finally {
-        setLoading(false);
-      }
+      setTransactions(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error("Error fetching transactions:", err);
+      setError(err.message || "Failed to load transactions.");
+    } finally {
+      setLoading(false);
     }
-
-    fetchTransactions();
   }, []);
+
+  // Fetch transactions when component mounts
+  useEffect(() => {
+    fetchTransactions();
+  }, [fetchTransactions]);
+
+  // Delete transaction
+  const handleDelete = async (transactionId) => {
+    try {
+      await deleteTransaction(transactionId);
+
+      await fetchTransactions();
+    } catch (err) {
+      console.error("Error deleting transaction:", err);
+      setError(err.message || "Failed to delete transaction.");
+    }
+  };
 
   // Filter transactions locally
   const filteredTransactions = transactions.filter((item) => {
@@ -145,7 +161,10 @@ export default function Transaction() {
           <p role="alert">{error}</p>
         </div>
       ) : filteredTransactions.length > 0 ? (
-        <TransactionList transactions={filteredTransactions} />
+        <TransactionList
+          transactions={filteredTransactions}
+          onDelete={handleDelete}
+        />
       ) : (
         <div className="transaction_empty_state">
           <h3>
