@@ -1,5 +1,11 @@
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
 import "./transaction.css";
 
 import IncomeCard from "../../components/common/card/Card";
@@ -13,8 +19,16 @@ import {
   deleteTransaction,
 } from "../../lib/transactions";
 
+import { DataContext } from "../../App";
+
 export default function Transaction() {
-  const [transactions, setTransactions] = useState([]);
+  const {
+    transactionTransactions: transactions,
+    setTransactionTransactions: setTransactions,
+    transactionNewData,
+    setTransactionNewData,
+    setDashboardNewData,
+  } = useContext(DataContext);
 
   const [filters, setFilters] = useState({
     selectedDate: "",
@@ -36,25 +50,46 @@ export default function Transaction() {
       const data = await getTransactions();
 
       setTransactions(Array.isArray(data) ? data : []);
+
+      return true;
     } catch (err) {
       console.error("Error fetching transactions:", err);
       setError(err.message || "Failed to load transactions.");
+
+      return false;
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [setTransactions]);
 
-  // Fetch transactions when component mounts
+  // Fetch only when new data is available
   useEffect(() => {
-    fetchTransactions();
-  }, [fetchTransactions]);
+    async function loadData() {
+      if (transactionNewData) {
+        const success = await fetchTransactions();
+
+        if (success) {
+          setTransactionNewData(false);
+        }
+      } else {
+        setLoading(false);
+      }
+    }
+
+    loadData();
+  }, [
+    transactionNewData,
+    fetchTransactions,
+    setTransactionNewData,
+  ]);
 
   // Delete transaction
   const handleDelete = async (transactionId) => {
     try {
       await deleteTransaction(transactionId);
 
-      await fetchTransactions();
+      setTransactionNewData(true);
+      setDashboardNewData(true);
     } catch (err) {
       console.error("Error deleting transaction:", err);
       setError(err.message || "Failed to delete transaction.");
@@ -110,7 +145,7 @@ export default function Transaction() {
 
   return (
     <div className="transaction_page">
-      <h2 className="transaction_page_title">Transactions</h2>
+      <h2 className="transaction_page_title">Transaction</h2>
 
       {/* Summary Cards */}
       <div className="transaction_summary_grid">

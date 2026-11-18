@@ -16,6 +16,13 @@
   overflow: auto;
 }
 
+.DashBoard_page_title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 700;
+}
+
 .dashboard_summary,
 .dashboard_charts {
   width: 100%;

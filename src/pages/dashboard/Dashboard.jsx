@@ -1,5 +1,11 @@
 
-import React, { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
 import "./dashboard.css";
 
 import Card from "../../components/common/card/Card";
@@ -9,41 +15,73 @@ import QuickStats from "../../components/common/QuickStats/QuickStats";
 import TransactionForm from "../../components/common/TransactionForm/TransactionForm";
 
 import { Download, Upload, Wallet, PieChart } from "lucide-react";
+
 import {
   getTransactions,
   addTransaction,
 } from "../../lib/transactions";
 
+import { DataContext } from "../../App";
+
 const formatPKR = (amount) =>
   `Rs. ${Number(amount || 0).toLocaleString("en-PK")}`;
 
 export default function Dashboard() {
-  const [transactions, setTransactions] = useState([]);
+  const {
+    dashboardTransactions: transactions,
+    setDashboardTransactions: setTransactions,
+    dashboardNewData,
+    setDashboardNewData,
+    setTransactionNewData,
+  } = useContext(DataContext);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  async function fetchTransactions() {
+  const fetchTransactions = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
 
       const data = await getTransactions("dashboard");
       setTransactions(data);
+
+      return true;
     } catch (err) {
       console.error("Error fetching transactions:", err);
       setError(err.message || "Failed to load transactions.");
+
+      return false;
     } finally {
       setLoading(false);
     }
-  }
+  }, [setTransactions]);
 
   useEffect(() => {
-    fetchTransactions();
-  }, []);
+    async function loadData() {
+      if (dashboardNewData) {
+        const success = await fetchTransactions();
+
+        if (success) {
+          setDashboardNewData(false);
+        }
+      } else {
+        setLoading(false);
+      }
+    }
+
+    loadData();
+  }, [
+    dashboardNewData,
+    fetchTransactions,
+    setDashboardNewData,
+  ]);
 
   async function handleTransactionAdded(transaction) {
     await addTransaction(transaction);
-    await fetchTransactions();
+
+    setDashboardNewData(true);
+    setTransactionNewData(true);
   }
 
   // Calculate dashboard totals
@@ -59,13 +97,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-      {loading && <p>Loading transactions...</p>}
-
-      {error && <p role="alert">{error}</p>}
-
-      {!loading && !error && (
-        <p>Transactions loaded: {transactions.length}</p>
-      )}
+      <h2 className="DashBoard_page_title">DashBoard</h2>
 
       {/* Summary Cards */}
       <section className="dashboard_summary">

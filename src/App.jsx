@@ -1,13 +1,17 @@
-import { useState } from 'react'
-import Dashboard from './pages/dashboard/Dashboard'
-import Transaction from './pages/transaction/Transaction'
-import Report from './pages/report/Report'
-import Setting from './pages/setting/Setting'
-import MainLayout from './layout/MainLayout'
+import { createContext, useState } from "react";
+
+import Dashboard from "./pages/dashboard/Dashboard";
+import Transaction from "./pages/transaction/Transaction";
+import Report from "./pages/report/Report";
+import Setting from "./pages/setting/Setting";
+import MainLayout from "./layout/MainLayout";
+
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+export const DataContext = createContext();
 
 const router = createBrowserRouter([
   {
@@ -50,11 +54,29 @@ const router = createBrowserRouter([
   },
 ]);
 
-
 function App() {
-  const [count, setCount] = useState(0)
+  const [dashboardTransactions, setDashboardTransactions] = useState([]);
+  const [transactionTransactions, setTransactionTransactions] = useState([]);
 
-  return <RouterProvider router={router} />;
+  const [dashboardNewData, setDashboardNewData] = useState(true);
+  const [transactionNewData, setTransactionNewData] = useState(true);
+
+  return (
+    <DataContext.Provider
+      value={{
+        dashboardTransactions,
+        setDashboardTransactions,
+        transactionTransactions,
+        setTransactionTransactions,
+        dashboardNewData,
+        setDashboardNewData,
+        transactionNewData,
+        setTransactionNewData,
+      }}
+    >
+      <RouterProvider router={router} />
+    </DataContext.Provider>
+  );
 }
 
-export default App
+export default App;
