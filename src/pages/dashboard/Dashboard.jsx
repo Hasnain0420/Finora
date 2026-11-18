@@ -27,7 +27,7 @@ export default function Dashboard() {
       setLoading(true);
       setError(null);
 
-      const data = await getTransactions();
+      const data = await getTransactions("dashboard");
       setTransactions(data);
     } catch (err) {
       console.error("Error fetching transactions:", err);

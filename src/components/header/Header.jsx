@@ -43,10 +43,10 @@ export default function Header({
       <div className="header_text">
         <p className="header_greeting">Good Evening,</p>
 
-        <h1>{title || "Muhammad Hasnain"}</h1>
+        <h1>{fullName || "LOG IN PLEASE"}</h1>
 
         <p className="header_description">
-          {description || "Here's your expense overview for this month."}
+          {description}
         </p>
       </div>
 

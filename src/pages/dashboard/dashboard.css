@@ -199,7 +199,7 @@
 @media (max-width: 550px) {
   .graph_states {
     gap: 10px;
-    padding: 8px;
+    /* padding: 8px; */
   }
 
   .quick_state {
@@ -242,9 +242,5 @@
   .stats_grid {
     gap: 10px;
   }
-
-  .visualizer,
-  .transaction_input {
-    padding: 8px;
-  }
+  
 }

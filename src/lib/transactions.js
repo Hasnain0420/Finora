@@ -2,11 +2,33 @@
 import { supabase } from "./supabase";
 
 // Fetch all transactions
-export async function getTransactions() {
-  const { data, error } = await supabase
+export async function getTransactions(page) {
+  let query = supabase
     .from("transactions")
     .select("*")
     .order("date", { ascending: false });
+
+  if (page === "dashboard") {
+    const now = new Date();
+
+    const firstDay = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      1
+    ).toLocaleDateString("en-CA");
+
+    const lastDay = new Date(
+      now.getFullYear(),
+      now.getMonth() + 1,
+      0
+    ).toLocaleDateString("en-CA");
+
+    query = query
+      .gte("date", firstDay)
+      .lte("date", lastDay);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     throw error;
