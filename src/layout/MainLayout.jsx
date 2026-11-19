@@ -1,7 +1,8 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useMatches } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import { DataContext } from "../context/DataContext";
 import Sidebar from "../components/sidebar/Sidebar";
 import Header from "../components/header/Header";
 import "./mainlayout.css";
@@ -12,6 +13,11 @@ export default function MainLayout() {
   const page = matches.find(
     (match) => match.handle?.title
   )?.handle;
+
+  const {
+    setDashboardNewData,
+    setTransactionNewData,
+  } = useContext(DataContext);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -26,20 +32,37 @@ export default function MainLayout() {
       setAuthLoading(false);
     });
 
-    // Check the existing session when the layout mounts.
-    supabase.auth.getSession().then(({ data, error }) => {
-      if (error) {
-        console.error("Session error:", error.message);
-      }
-
-      setUser(data?.session?.user ?? null);
-      setAuthLoading(false);
-    });
-
     return () => {
       subscription.unsubscribe();
     };
   }, []);
+
+  // Listen for transaction changes in Supabase.
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const channel = supabase
+      .channel(`transactions-${user.id}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "transactions",
+        },
+        (payload) => {
+          console.log("Transaction database change:", payload);
+
+          setDashboardNewData(true);
+          setTransactionNewData(true);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user?.id, setDashboardNewData, setTransactionNewData]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((previous) => !previous);
@@ -50,6 +73,7 @@ export default function MainLayout() {
   };
 
   const handleSignIn = async () => {
+    console.log("Current origin:", window.location.origin);
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {

@@ -19,7 +19,7 @@ import {
   deleteTransaction,
 } from "../../lib/transactions";
 
-import { DataContext } from "../../App";
+import { DataContext } from "../../context/DataContext";
 
 export default function Transaction() {
   const {

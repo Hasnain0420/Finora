@@ -21,7 +21,7 @@ import {
   addTransaction,
 } from "../../lib/transactions";
 
-import { DataContext } from "../../App";
+import { DataContext } from "../../context/DataContext";
 
 const formatPKR = (amount) =>
   `Rs. ${Number(amount || 0).toLocaleString("en-PK")}`;

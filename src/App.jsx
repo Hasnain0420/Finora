@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
+import { DataContext } from "./context/DataContext";
 
 import Dashboard from "./pages/dashboard/Dashboard";
 import Transaction from "./pages/transaction/Transaction";
@@ -10,8 +11,6 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
-export const DataContext = createContext();
 
 const router = createBrowserRouter([
   {
