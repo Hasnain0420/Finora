@@ -42,25 +42,26 @@ export default function Transaction() {
   const [error, setError] = useState(null);
 
   // Fetch transactions
-  const fetchTransactions = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
+  // Fetch transactions
+const fetchTransactions = useCallback(async () => {
+  try {
+    setLoading(true);
+    setError(null);
 
-      const data = await getTransactions();
+    const data = await getTransactions();
 
-      setTransactions(Array.isArray(data) ? data : []);
+    setTransactions(Array.isArray(data) ? data : []);
 
-      return true;
-    } catch (err) {
-      console.error("Error fetching transactions:", err);
-      setError(err.message || "Failed to load transactions.");
+    return true;
+  } catch (err) {
+    console.error("Error fetching transactions:", err);
+    setError(err.message || "Failed to load transactions.");
 
-      return false;
-    } finally {
-      setLoading(false);
-    }
-  }, [setTransactions]);
+    return false;
+  } finally {
+    setLoading(false);
+  }
+}, [setTransactions]);
 
   // Fetch only when new data is available
   useEffect(() => {
