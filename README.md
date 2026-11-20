@@ -20,18 +20,21 @@ A modern, intuitive, and secure personal finance tracker designed to help you ma
 
 Whether you're monitoring daily expenses, managing multiple income sources, or reviewing your financial activity, Finora provides a clean dashboard and an easy-to-use transaction management experience.
 
-Built with React and powered by Supabase, Finora combines a responsive frontend with secure user authentication and cloud-based data storage.
+Built with React and powered by Supabase, Finora combines a responsive frontend with secure user authentication, cloud-based data storage, real-time synchronization, and optimized data fetching.
 
 ## 🚀 Features
 
-- 📊 **Financial Dashboard** — Get an overview of your financial activity.
+- 📊 **Financial Dashboard** — Get an overview of your financial activity, including income, expenses, and balance.
 - 💰 **Income Tracking** — Record and monitor your income.
 - 💸 **Expense Tracking** — Keep track of where your money goes.
-- 📋 **Transaction Management** — Add, view, and manage transactions.
+- 📋 **Transaction Management** — Add, view, and manage financial transactions.
 - 🔍 **Smart Filtering** — Filter transactions by type, category, date, and amount.
 - 📈 **Financial Summaries** — View total income, expenses, and net balance.
+- 🔄 **Cross-Device Cloud Sync** — Access your financial data across desktop and mobile devices using the same account.
+- ⚡ **Real-Time Multi-Device Synchronization** — Changes made on one device are automatically reflected in the UI of other logged-in devices in real time, without manually refreshing the page.
+- 🧠 **Optimized Data Fetching & Caching** — Fetch only the required transaction data, reuse existing application state, and refresh data when changes are detected to minimize unnecessary database requests.
 - 🔐 **Secure Authentication** — User authentication powered by Supabase, including Google OAuth.
-- ☁️ **Cloud Database** — Store your financial records in Supabase.
+- ☁️ **Cloud Database** — Store your financial records securely in Supabase.
 - 🛡️ **Row-Level Security** — Protect user data with database-level access policies.
 - 📱 **Responsive Interface** — Designed to work across desktop and mobile screens.
 
@@ -64,6 +67,7 @@ Built with React and powered by Supabase, Finora combines a responsive frontend 
 | Supabase | Backend and database |
 | Supabase Auth | User authentication |
 | PostgreSQL | Data storage |
+| Supabase Realtime | Real-time database change notifications |
 | Lucide React | Icons |
 | Vercel | Deployment |
 
