@@ -20,32 +20,32 @@ export default function Landing() {
       icon: <Wallet size={23} />,
       title: "Track Your Income",
       description:
-        "Keep all your income records organized in one place.",
+        "Record and organize your income in one place. Keep track of the money you receive and monitor your overall financial activity.",
     },
     {
       icon: <ReceiptText size={23} />,
-      title: "Manage Expenses",
+      title: "Manage Your Expenses",
       description:
-        "Record your daily expenses and understand your spending.",
+        "Add daily expenses, organize transactions by category, and understand where your money goes.",
     },
     {
       icon: <ChartNoAxesCombined size={23} />,
-      title: "Visual Reports",
+      title: "Visual Financial Reports",
       description:
-        "Analyze your financial activity through clear reports.",
+        "View your income and expenses through clear charts and reports to better understand your spending habits.",
     },
     {
       icon: <ShieldCheck size={23} />,
-      title: "Your Personal Account",
+      title: "Personal Finance Account",
       description:
-        "Keep your financial information connected to your account.",
+        "Access your personal financial dashboard through your account and keep your transactions associated with your account.",
     },
   ];
 
   return (
     <div className="landing_page">
       {/* Navbar */}
-      <nav className="landing_nav">
+      <nav className="landing_nav" aria-label="Main navigation">
         <Link to="/" className="landing_logo">
           <Wallet size={29} />
           <span>Finora</span>
@@ -68,166 +68,183 @@ export default function Landing() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="landing_hero">
-        <div className="hero_content">
-          <span className="hero_badge">
-            <CircleDollarSign size={16} />
-            PERSONAL FINANCE MANAGEMENT
-          </span>
+      <main>
+        {/* Hero Section */}
+        <section className="landing_hero">
+          <div className="hero_content">
+            <span className="hero_badge">
+              <CircleDollarSign size={16} />
+              PERSONAL FINANCE MANAGEMENT
+            </span>
 
-          <h1>
-            Take Control of Your Money.
-            <span> Track Every Rupee.</span>
-          </h1>
+            <h1>
+              Personal Expense Tracker.
+              <span> Take Control of Every Rupee.</span>
+            </h1>
 
-          <p>
-            Manage your income, track your expenses, and
-            understand your spending habits with Finora.
-            Your finances, organized in one place.
-          </p>
+            <p>
+              Finora makes personal finance management simple.
+              Track your income, record daily expenses, manage
+              transactions, and understand your spending habits
+              with an organized financial dashboard.
+            </p>
 
-          <div className="hero_actions">
-            <Link to="/login" className="hero_primary_btn">
-              Get Started <ArrowRight size={18} />
-            </Link>
+            <div className="hero_actions">
+              <Link to="/login" className="hero_primary_btn">
+                Get Started <ArrowRight size={18} />
+              </Link>
 
-            <a href="#features" className="hero_secondary_btn">
-              Explore Features
-            </a>
-          </div>
-
-          <div className="hero_trust">
-            <CheckCircle2 size={17} />
-            Simple, organized and easy to use
-          </div>
-        </div>
-
-        {/* Dashboard Preview */}
-        <div className="hero_preview">
-          <div className="preview_header">
-            <div>
-              <span>Finora Dashboard</span>
-              <p>Your financial overview</p>
+              <a href="#features" className="hero_secondary_btn">
+                Explore Features
+              </a>
             </div>
 
-            <div className="preview_status">
-              <span></span>
-              Preview
+            <div className="hero_trust">
+              <CheckCircle2 size={17} />
+              Simple, organized and easy to use
             </div>
           </div>
 
-          <div className="preview_stats">
-            <div className="preview_stat income_stat">
-              <span>Total Income</span>
-              <strong>Rs. 85,000</strong>
-              <TrendingUp size={19} />
-            </div>
-
-            <div className="preview_stat expense_stat">
-              <span>Total Expenses</span>
-              <strong>Rs. 32,000</strong>
-              <ReceiptText size={19} />
-            </div>
-          </div>
-
-          <div className="preview_balance">
-            <span>Available Balance</span>
-            <strong>Rs. 53,000</strong>
-            <small>Your income minus expenses</small>
-          </div>
-
-          <div className="preview_chart">
-            <div className="preview_chart_header">
-              <strong>Monthly Overview</strong>
-              <span>Last 7 months</span>
-            </div>
-
-            <div className="preview_bars">
-              {[45, 65, 50, 85, 60, 75, 95].map(
-                (height, index) => (
-                  <div className="preview_bar_group" key={index}>
-                    <div className="preview_bar_container">
-                      <div
-                        className="preview_bar"
-                        style={{ height: `${height}%` }}
-                      />
-                    </div>
-                    <span>
-                      {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"][index]}
-                    </span>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="landing_features" id="features">
-        <div className="section_heading">
-          <span>FEATURES</span>
-          <h2>Everything You Need to Manage Your Money</h2>
-          <p>
-            Take the stress out of managing your personal finances.
-          </p>
-        </div>
-
-        <div className="features_grid">
-          {features.map((feature, index) => (
-            <div className="feature_card" key={index}>
-              <div className="feature_icon">
-                {feature.icon}
+          {/* Dashboard Preview */}
+          <div className="hero_preview">
+            <div className="preview_header">
+              <div>
+                <span>Finora Dashboard</span>
+                <p>Your financial overview</p>
               </div>
 
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
+              <div className="preview_status">
+                <span></span>
+                Preview
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* How It Works */}
-      <section className="landing_how" id="how-it-works">
-        <div className="section_heading">
-          <span>HOW IT WORKS</span>
-          <h2>Managing Money Made Simple</h2>
-          <p>Three simple steps to better financial organization.</p>
-        </div>
+            <div className="preview_stats">
+              <div className="preview_stat income_stat">
+                <span>Total Income</span>
+                <strong>Rs. 85,000</strong>
+                <TrendingUp size={19} />
+              </div>
 
-        <div className="how_grid">
-          <div className="how_card">
-            <div className="how_number">01</div>
-            <h3>Create Your Account</h3>
-            <p>Sign in and get started with your personal account.</p>
+              <div className="preview_stat expense_stat">
+                <span>Total Expenses</span>
+                <strong>Rs. 32,000</strong>
+                <ReceiptText size={19} />
+              </div>
+            </div>
+
+            <div className="preview_balance">
+              <span>Available Balance</span>
+              <strong>Rs. 53,000</strong>
+              <small>Your income minus expenses</small>
+            </div>
+
+            <div className="preview_chart">
+              <div className="preview_chart_header">
+                <strong>Monthly Overview</strong>
+                <span>Last 7 months</span>
+              </div>
+
+              <div className="preview_bars">
+                {[45, 65, 50, 85, 60, 75, 95].map(
+                  (height, index) => (
+                    <div className="preview_bar_group" key={index}>
+                      <div className="preview_bar_container">
+                        <div
+                          className="preview_bar"
+                          style={{ height: `${height}%` }}
+                        />
+                      </div>
+                      <span>
+                        {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"][index]}
+                      </span>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features */}
+        <section className="landing_features" id="features">
+          <div className="section_heading">
+            <span>FEATURES</span>
+            <h2>Everything You Need to Manage Your Personal Finances</h2>
+            <p>
+              Use one personal finance tracker to organize income,
+              manage expenses, and monitor your financial activity.
+            </p>
           </div>
 
-          <div className="how_card">
-            <div className="how_number">02</div>
-            <h3>Add Transactions</h3>
-            <p>Record your income and expenses whenever you need.</p>
+          <div className="features_grid">
+            {features.map((feature, index) => (
+              <div className="feature_card" key={index}>
+                <div className="feature_icon">
+                  {feature.icon}
+                </div>
+
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="landing_how" id="how-it-works">
+          <div className="section_heading">
+            <span>HOW IT WORKS</span>
+            <h2>How to Manage Your Money with Finora</h2>
+            <p>
+              Get started with personal expense tracking in three
+              simple steps.
+            </p>
           </div>
 
-          <div className="how_card">
-            <div className="how_number">03</div>
-            <h3>Monitor Your Finances</h3>
-            <p>Review your reports and understand your spending.</p>
+          <div className="how_grid">
+            <div className="how_card">
+              <div className="how_number">01</div>
+              <h3>Create Your Account</h3>
+              <p>
+                Sign in with your Google account to access your
+                personal financial dashboard.
+              </p>
+            </div>
+
+            <div className="how_card">
+              <div className="how_number">02</div>
+              <h3>Record Income and Expenses</h3>
+              <p>
+                Add your income and daily expenses to keep your
+                financial transactions organized.
+              </p>
+            </div>
+
+            <div className="how_card">
+              <div className="how_number">03</div>
+              <h3>Monitor Your Finances</h3>
+              <p>
+                Review your financial reports and analyze your
+                spending patterns over time.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About / CTA */}
-      <section className="landing_cta" id="about">
-        <h2>Ready to Take Control of Your Finances?</h2>
-        <p>
-          Start organizing your money and make every rupee count.
-        </p>
+        {/* About / CTA */}
+        <section className="landing_cta" id="about">
+          <h2>Take Control of Your Personal Finances with Finora</h2>
+          <p>
+            Start tracking your income, managing expenses, and
+            making better sense of your money.
+          </p>
 
-        <Link to="/login" className="hero_primary_btn">
-          Get Started with Finora <ArrowRight size={18} />
-        </Link>
-      </section>
+          <Link to="/login" className="hero_primary_btn">
+            Get Started with Finora <ArrowRight size={18} />
+          </Link>
+        </section>
+      </main>
 
       {/* Footer */}
       <footer className="landing_footer">
@@ -237,10 +254,13 @@ export default function Landing() {
         </Link>
 
         <p>
-          Take control of your finances, one transaction at a time.
+          Your personal expense tracker for organizing income
+          and managing everyday expenses.
         </p>
 
-        <span>© {new Date().getFullYear()} Finora. All rights reserved.</span>
+        <span>
+          © {new Date().getFullYear()} Finora. All rights reserved.
+        </span>
       </footer>
     </div>
   );
