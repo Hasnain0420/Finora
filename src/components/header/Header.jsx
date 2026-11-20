@@ -4,7 +4,6 @@ import "./header.css";
 import { Bell, Menu } from "lucide-react";
 
 export default function Header({
-  title,
   description,
   onMenuClick,
   isLoggedIn,
@@ -30,6 +29,20 @@ export default function Header({
     .join("")
     .toUpperCase();
 
+  const currentHour = new Date().getHours();
+
+  let greeting;
+
+  if (currentHour >= 5 && currentHour < 12) {
+    greeting = "Good Morning";
+  } else if (currentHour >= 12 && currentHour < 17) {
+    greeting = "Good Afternoon";
+  } else if (currentHour >= 17 && currentHour < 21) {
+    greeting = "Good Evening";
+  } else {
+    greeting = "Good to See You";
+  }
+
   return (
     <header className="header">
       <button
@@ -41,9 +54,9 @@ export default function Header({
       </button>
 
       <div className="header_text">
-        <p className="header_greeting">Good Evening,</p>
+        <p className="header_greeting">{greeting},</p>
 
-        <h1>{fullName || "LOG IN PLEASE"}</h1>
+        <h1>{isLoggedIn ? fullName : "LOG IN PLEASE"}</h1>
 
         <p className="header_description">
           {description}

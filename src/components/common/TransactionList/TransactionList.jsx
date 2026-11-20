@@ -48,13 +48,7 @@ export default function TransactionList({ transactions = [], onDelete }) {
       year: "numeric",
     });
 
-  if (transactions.length === 0) {
-    return (
-      <div className="transaction_list_empty">
-        <p>No transactions found.</p>
-      </div>
-    );
-  }
+  
 
   return (
     <div className="transaction_list">

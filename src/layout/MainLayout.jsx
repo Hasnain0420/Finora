@@ -102,7 +102,6 @@ export default function MainLayout() {
 
       <main className="main_content">
         <Header
-          title={page?.title}
           description={page?.description}
           onMenuClick={toggleSidebar}
           isLoggedIn={Boolean(user)}

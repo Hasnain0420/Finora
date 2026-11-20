@@ -194,7 +194,7 @@ const fetchTransactions = useCallback(async () => {
         </div>
       ) : error ? (
         <div className="transaction_empty_state">
-          <p role="alert">{error}</p>
+          <p role="alert">{"Sign-In to get your transactions"}</p>
         </div>
       ) : filteredTransactions.length > 0 ? (
         <TransactionList
@@ -204,9 +204,7 @@ const fetchTransactions = useCallback(async () => {
       ) : (
         <div className="transaction_empty_state">
           <h3>
-            {transactions.length === 0
-              ? "No transactions yet"
-              : "No transactions found"}
+            "No transactions yet"
           </h3>
 
           <p>
