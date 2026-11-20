@@ -1,3 +1,4 @@
+
 import React from "react";
 import "./sidebar.css";
 import wallet from "../../assets/wallet.png";
@@ -17,9 +18,7 @@ export default function Sidebar({ isOpen, onClose }) {
       <div className="logo">
         <img src={wallet} alt="Wallet" width="30" height="30" />
 
-        <p>
-          Finora
-        </p>
+        <p>Finora</p>
 
         <button
           className="sidebar_close_btn"
@@ -31,38 +30,55 @@ export default function Sidebar({ isOpen, onClose }) {
       </div>
 
       <nav className="sidebar_nav">
-        <NavLink to="/" end className="sidebar_link" onClick={onClose}>
+        <NavLink
+          to="/dashboard"
+          end
+          className="sidebar_link"
+          onClick={onClose}
+        >
           <House size={20} />
           <span>Dashboard</span>
         </NavLink>
 
-        <NavLink to="/transaction" className="sidebar_link" onClick={onClose}>
+        <NavLink
+          to="/dashboard/transaction"
+          className="sidebar_link"
+          onClick={onClose}
+        >
           <ArrowLeftRight size={20} />
           <span>Transactions</span>
         </NavLink>
 
-        <NavLink to="/report" className="sidebar_link" onClick={onClose}>
+        <NavLink
+          to="/dashboard/report"
+          className="sidebar_link"
+          onClick={onClose}
+        >
           <ChartNoAxesColumn size={20} />
           <span>Reports</span>
         </NavLink>
 
-        <NavLink to="/setting" className="sidebar_link" onClick={onClose}>
+        <NavLink
+          to="/dashboard/setting"
+          className="sidebar_link"
+          onClick={onClose}
+        >
           <Settings size={20} />
           <span>Settings</span>
         </NavLink>
       </nav>
 
       <div className="sidebar_footer">
-  <Sprout size={32} strokeWidth={1.8} />
+        <Sprout size={32} strokeWidth={1.8} />
 
-  <p>
-    Good money
-    <br />
-    habits, a brighter
-    <br />
-    future
-  </p>
-</div>
+        <p>
+          Good money
+          <br />
+          habits, a brighter
+          <br />
+          future
+        </p>
+      </div>
     </aside>
   );
 }

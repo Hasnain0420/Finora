@@ -1,6 +1,9 @@
+
 import { useState } from "react";
 import { DataContext } from "./context/DataContext";
 
+import Landing from "./pages/landing/Landing";
+import Login from "./pages/login/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Transaction from "./pages/transaction/Transaction";
 import Report from "./pages/report/Report";
@@ -15,6 +18,14 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Landing />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/dashboard",
     element: <MainLayout />,
     children: [
       {

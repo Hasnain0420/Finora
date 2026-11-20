@@ -1,6 +1,12 @@
 
 import React, { useContext, useEffect, useState } from "react";
-import { Outlet, useMatches } from "react-router-dom";
+import {
+  Outlet,
+  useMatches,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+
 import { supabase } from "../lib/supabase";
 import { DataContext } from "../context/DataContext";
 import Sidebar from "../components/sidebar/Sidebar";
@@ -9,6 +15,7 @@ import "./mainlayout.css";
 
 export default function MainLayout() {
   const matches = useMatches();
+  const location = useLocation();
 
   const page = matches.find(
     (match) => match.handle?.title
@@ -23,8 +30,8 @@ export default function MainLayout() {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
 
+  // Listen for authentication changes.
   useEffect(() => {
-    // Listen for sign-in, sign-out, and session changes.
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -73,11 +80,10 @@ export default function MainLayout() {
   };
 
   const handleSignIn = async () => {
-    console.log("Current origin:", window.location.origin);
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin,
+        redirectTo: `${window.location.origin}/dashboard`,
       },
     });
 
@@ -85,6 +91,16 @@ export default function MainLayout() {
       console.error("Google sign-in error:", error.message);
     }
   };
+
+  // Wait until Supabase checks the authentication session.
+  if (authLoading) {
+    return <div>Checking authentication...</div>;
+  }
+
+  // Redirect users who are not authenticated.
+  if (!user) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
 
   return (
     <div className="app_layout">
