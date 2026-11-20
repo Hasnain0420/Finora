@@ -40,17 +40,21 @@ Built with React and powered by Supabase, Finora combines a responsive frontend 
 
 ## 🖼️ Application Screenshots
 
-### 📊 Dashboard
+### 🏠 Landing Page
+
+![Finora Landing Page](src/assets/screenshots/landing.png)
+
+### 🔐 Login Page
+
+![Finora Login Page](src/assets/screenshots/login.png)
+
+### 📊 Financial Dashboard
 
 ![Finora Dashboard](src/assets/screenshots/dashboard.png)
 
 ### 📋 Transaction Management
 
 ![Finora Transactions](src/assets/screenshots/transactions.png)
-
-### 🔐 Authentication
-
-![Finora Authentication](src/assets/screenshots/authentication.png)
 
 ### 📱 Mobile Experience
 
