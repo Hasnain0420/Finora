@@ -21,6 +21,7 @@ import {
   addTransaction,
 } from "../../lib/transactions";
 
+import { supabase } from "../../lib/supabase";
 import { DataContext } from "../../context/DataContext";
 
 const formatPKR = (amount) =>
@@ -33,6 +34,8 @@ export default function Dashboard() {
     dashboardNewData,
     setDashboardNewData,
     setTransactionNewData,
+    setReportNewData,
+    setAvailableYears,
   } = useContext(DataContext);
 
   const [loading, setLoading] = useState(true);
@@ -57,12 +60,48 @@ export default function Dashboard() {
     }
   }, [setTransactions]);
 
+  const fetchAvailableYears = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from("transactions")
+        .select("date");
+
+      if (error) {
+        throw error;
+      }
+
+      const years = [
+        ...new Set(
+          data.map((item) => Number(item.date.split("-")[0]))
+        ),
+      ];
+
+      const currentYear = new Date().getFullYear();
+
+      if (!years.includes(currentYear)) {
+        years.push(currentYear);
+      }
+
+      years.sort((a, b) => a - b);
+
+      setAvailableYears(years);
+
+      return true;
+    } catch (err) {
+      console.error("Error fetching available years:", err);
+      return false;
+    }
+  }, [setAvailableYears]);
+
   useEffect(() => {
     async function loadData() {
       if (dashboardNewData) {
-        const success = await fetchTransactions();
+        const [transactionsSuccess, yearsSuccess] = await Promise.all([
+          fetchTransactions(),
+          fetchAvailableYears(),
+        ]);
 
-        if (success) {
+        if (transactionsSuccess && yearsSuccess) {
           setDashboardNewData(false);
         }
       } else {
@@ -74,6 +113,7 @@ export default function Dashboard() {
   }, [
     dashboardNewData,
     fetchTransactions,
+    fetchAvailableYears,
     setDashboardNewData,
   ]);
 
@@ -82,9 +122,9 @@ export default function Dashboard() {
 
     setDashboardNewData(true);
     setTransactionNewData(true);
+    setReportNewData(true);
   }
 
-  // Calculate dashboard totals
   const totalIncome = transactions
     .filter((item) => item.type === "income")
     .reduce((sum, item) => sum + Number(item.amount), 0);
@@ -99,7 +139,6 @@ export default function Dashboard() {
     <div className="dashboard">
       <h2 className="DashBoard_page_title">DashBoard</h2>
 
-      {/* Summary Cards */}
       <section className="dashboard_summary">
         <div className="stats_grid">
           <Card
@@ -152,7 +191,6 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Main Charts Layout */}
       <section className="dashboard_charts">
         <div className="visualizer">
           <IncomeExpenseChart transactions={transactions} />

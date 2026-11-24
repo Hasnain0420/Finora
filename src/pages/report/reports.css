@@ -1,0 +1,133 @@
+
+/* ========================================
+   1. REPORT CONTAINER
+======================================== */
+
+.report {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  gap: 20px;
+  padding: 5px 18px 10px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.report_page_title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ========================================
+   2. MAIN REPORT CHARTS
+======================================== */
+
+.report_charts {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.report_visualizer {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  gap: 16px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   3. LOWER CHARTS LAYOUT
+======================================== */
+
+.report_graph_states {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   4. CHART PLACEHOLDERS
+======================================== */
+
+.report_area_chart_placeholder {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 280px;
+  padding: 18px;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.report_stacked_chart_placeholder {
+  display: flex;
+  flex: 3 1 300px;
+  min-width: 0;
+  max-width: 100%;
+  height: 220px;
+  padding: 12px;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   5. RESPONSIVE
+======================================== */
+
+@media (max-width: 550px) {
+  .report {
+    padding: 5px 12px 10px;
+    gap: 14px;
+  }
+
+  .report_visualizer {
+    gap: 10px;
+  }
+
+  .report_graph_states {
+    gap: 10px;
+  }
+
+  .report_area_chart_placeholder {
+    padding: 12px;
+  }
+
+  .report_stacked_chart_placeholder {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 220px;
+  }
+}

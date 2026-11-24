@@ -67,9 +67,13 @@ const router = createBrowserRouter([
 function App() {
   const [dashboardTransactions, setDashboardTransactions] = useState([]);
   const [transactionTransactions, setTransactionTransactions] = useState([]);
+  const [reportTransactions, setReportTransactions] = useState([]);
 
   const [dashboardNewData, setDashboardNewData] = useState(true);
   const [transactionNewData, setTransactionNewData] = useState(true);
+  const [reportNewData, setReportNewData] = useState(true);
+
+  const [availableYears, setAvailableYears] = useState([]);
 
   return (
     <DataContext.Provider
@@ -78,10 +82,16 @@ function App() {
         setDashboardTransactions,
         transactionTransactions,
         setTransactionTransactions,
+        reportTransactions,
+        setReportTransactions,
         dashboardNewData,
         setDashboardNewData,
         transactionNewData,
         setTransactionNewData,
+        reportNewData,
+        setReportNewData,
+        availableYears,
+        setAvailableYears,
       }}
     >
       <RouterProvider router={router} />

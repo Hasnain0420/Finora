@@ -1,0 +1,126 @@
+
+/* ========================================
+   1. MONTHLY CASH FLOW CONTAINER
+======================================== */
+
+.monthly_cash_flow {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 280px;
+  padding: 18px;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   2. HEADER
+======================================== */
+
+.monthly_cash_flow_header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
+}
+
+.monthly_cash_flow_header h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.monthly_cash_flow_header p {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.monthly_cash_flow_period {
+  padding: 6px 10px;
+  color: #475569;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+/* ========================================
+   3. CHART
+======================================== */
+
+.monthly_cash_flow_chart {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 190px;
+  min-height: 190px;
+}
+
+/* ========================================
+   4. EMPTY STATE
+======================================== */
+
+.monthly_cash_flow_empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  gap: 7px;
+  text-align: center;
+}
+
+.monthly_cash_flow_empty_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 4px;
+  color: #94a3b8;
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.monthly_cash_flow_empty p {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.monthly_cash_flow_empty > span {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* ========================================
+   5. RESPONSIVE
+======================================== */
+
+@media (max-width: 550px) {
+  .monthly_cash_flow {
+    padding: 12px;
+  }
+
+  .monthly_cash_flow_header h3 {
+    font-size: 15px;
+  }
+
+  .monthly_cash_flow_chart {
+    height: 200px;
+    min-height: 200px;
+  }
+}
